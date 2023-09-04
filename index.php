@@ -25,6 +25,173 @@ $db = new DbConnect;
     
     <?php 
     
+    if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='RenovMur'){
+        $resultAllChantier=$db->readAllSlideWhere(1);
+        foreach ($resultAllChantier as $resultAllChantierKey) {
+            echo
+                '<form method=\'POST\'><div class="cardupdate">
+                <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
+                <div class="imageCardUpdate">
+                    <div class="imageAvant">
+                        <p>Avant</p>
+                        <img src="' .$resultAllChantierKey['photo_av_chantier']. '" alt="">
+                    </div>
+                    <div class="imageApres">
+                        <p>Après</p>
+                        <img src="' .$resultAllChantierKey['photo_ap_chantier']. '" alt="">
+                    </div>
+                </div>
+                <p>' .$resultAllChantierKey['description_chantier']. '</p>
+                <div class="updOrDelete">
+                    <input type="submit" name="Modifier' .$resultAllChantierKey['id_chantier']. '" value="Modifier">
+                    <input type="submit" name="Supprimer' .$resultAllChantierKey['id_chantier']. '" value="Supprimer">
+                    <input type="hidden" class="inputHidden" name="postSupprimer' .$resultAllChantierKey['id_chantier']. '" value="' .$resultAllChantierKey['id_chantier']. '">
+                    <input type="hidden" name="oldImageAv" value="' .$resultAllChantierKey['photo_av_chantier']. '">
+                    <input type="hidden" name="oldImageAp" value="' .$resultAllChantierKey['photo_ap_chantier']. '">';
+                    if (isset($_POST['Supprimer' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $oldImageAvDelete=$_POST['oldImageAv'];
+                        $oldImageApDelete=$_POST['oldImageAp'];
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        $db->deleteCard($idCardSelect);
+                        if($db){
+                            unlink($oldImageAvDelete);
+                            unlink($oldImageApDelete);
+                        }
+                    }
+                    if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        header("Location: index.php?page=realisation&command=modifier&card=$idCardSelect");
+                    }
+                echo '</div>
+            </div></form>';
+        }
+    }
+
+    if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='PeintureInt'){
+        $resultAllChantier=$db->readAllSlideWhere(2);
+        foreach ($resultAllChantier as $resultAllChantierKey) {
+            echo
+                '<form method=\'POST\'><div class="cardupdate">
+                <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
+                <div class="imageCardUpdate">
+                    <div class="imageAvant">
+                        <p>Avant</p>
+                        <img src="' .$resultAllChantierKey['photo_av_chantier']. '" alt="">
+                    </div>
+                    <div class="imageApres">
+                        <p>Après</p>
+                        <img src="' .$resultAllChantierKey['photo_ap_chantier']. '" alt="">
+                    </div>
+                </div>
+                <p>' .$resultAllChantierKey['description_chantier']. '</p>
+                <div class="updOrDelete">
+                    <input type="submit" name="Modifier' .$resultAllChantierKey['id_chantier']. '" value="Modifier">
+                    <input type="submit" name="Supprimer' .$resultAllChantierKey['id_chantier']. '" value="Supprimer">
+                    <input type="hidden" class="inputHidden" name="postSupprimer' .$resultAllChantierKey['id_chantier']. '" value="' .$resultAllChantierKey['id_chantier']. '">
+                    <input type="hidden" name="oldImageAv" value="' .$resultAllChantierKey['photo_av_chantier']. '">
+                    <input type="hidden" name="oldImageAp" value="' .$resultAllChantierKey['photo_ap_chantier']. '">';
+                    if (isset($_POST['Supprimer' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $oldImageAvDelete=$_POST['oldImageAv'];
+                        $oldImageApDelete=$_POST['oldImageAp'];
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        $db->deleteCard($idCardSelect);
+                        if($db){
+                            unlink($oldImageAvDelete);
+                            unlink($oldImageApDelete);
+                        }
+                    }
+                    if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        header("Location: index.php?page=realisation&command=modifier&card=$idCardSelect");
+                    }
+                echo '</div>
+            </div></form>';
+        }
+    }
+
+    if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='RevetMur'){
+        $resultAllChantier=$db->readAllSlideWhere(3);
+        foreach ($resultAllChantier as $resultAllChantierKey) {
+            echo
+                '<form method=\'POST\'><div class="cardupdate">
+                <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
+                <div class="imageCardUpdate">
+                    <div class="imageAvant">
+                        <p>Avant</p>
+                        <img src="' .$resultAllChantierKey['photo_av_chantier']. '" alt="">
+                    </div>
+                    <div class="imageApres">
+                        <p>Après</p>
+                        <img src="' .$resultAllChantierKey['photo_ap_chantier']. '" alt="">
+                    </div>
+                </div>
+                <p>' .$resultAllChantierKey['description_chantier']. '</p>
+                <div class="updOrDelete">
+                    <input type="submit" name="Modifier' .$resultAllChantierKey['id_chantier']. '" value="Modifier">
+                    <input type="submit" name="Supprimer' .$resultAllChantierKey['id_chantier']. '" value="Supprimer">
+                    <input type="hidden" class="inputHidden" name="postSupprimer' .$resultAllChantierKey['id_chantier']. '" value="' .$resultAllChantierKey['id_chantier']. '">
+                    <input type="hidden" name="oldImageAv" value="' .$resultAllChantierKey['photo_av_chantier']. '">
+                    <input type="hidden" name="oldImageAp" value="' .$resultAllChantierKey['photo_ap_chantier']. '">';
+                    if (isset($_POST['Supprimer' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $oldImageAvDelete=$_POST['oldImageAv'];
+                        $oldImageApDelete=$_POST['oldImageAp'];
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        $db->deleteCard($idCardSelect);
+                        if($db){
+                            unlink($oldImageAvDelete);
+                            unlink($oldImageApDelete);
+                        }
+                    }
+                    if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        header("Location: index.php?page=realisation&command=modifier&card=$idCardSelect");
+                    }
+                echo '</div>
+            </div></form>';
+        }
+    }
+
+    if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='RevetSol'){
+        $resultAllChantier=$db->readAllSlideWhere(4);
+        foreach ($resultAllChantier as $resultAllChantierKey) {
+            echo
+                '<form method=\'POST\'><div class="cardupdate">
+                <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
+                <div class="imageCardUpdate">
+                    <div class="imageAvant">
+                        <p>Avant</p>
+                        <img src="' .$resultAllChantierKey['photo_av_chantier']. '" alt="">
+                    </div>
+                    <div class="imageApres">
+                        <p>Après</p>
+                        <img src="' .$resultAllChantierKey['photo_ap_chantier']. '" alt="">
+                    </div>
+                </div>
+                <p>' .$resultAllChantierKey['description_chantier']. '</p>
+                <div class="updOrDelete">
+                    <input type="submit" name="Modifier' .$resultAllChantierKey['id_chantier']. '" value="Modifier">
+                    <input type="submit" name="Supprimer' .$resultAllChantierKey['id_chantier']. '" value="Supprimer">
+                    <input type="hidden" class="inputHidden" name="postSupprimer' .$resultAllChantierKey['id_chantier']. '" value="' .$resultAllChantierKey['id_chantier']. '">
+                    <input type="hidden" name="oldImageAv" value="' .$resultAllChantierKey['photo_av_chantier']. '">
+                    <input type="hidden" name="oldImageAp" value="' .$resultAllChantierKey['photo_ap_chantier']. '">';
+                    if (isset($_POST['Supprimer' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $oldImageAvDelete=$_POST['oldImageAv'];
+                        $oldImageApDelete=$_POST['oldImageAp'];
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        $db->deleteCard($idCardSelect);
+                        if($db){
+                            unlink($oldImageAvDelete);
+                            unlink($oldImageApDelete);
+                        }
+                    }
+                    if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
+                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+                        header("Location: index.php?page=realisation&command=modifier&card=$idCardSelect");
+                    }
+                echo '</div>
+            </div></form>';
+        }
+    }
     
     if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='All'){ 
         

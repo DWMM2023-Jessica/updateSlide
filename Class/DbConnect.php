@@ -20,6 +20,14 @@ class DbConnect extends Database{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function readAllSlideWhere($idtravaux)
+    {
+        $sql="SELECT * FROM `chantier` WHERE `id_travaux`=$idtravaux;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function deleteCard($idCardDelete){
         $sqlDeleteCard="DELETE FROM `chantier` WHERE `id_chantier`=$idCardDelete;";
         $stmtDeleteCard= $this->dbConnect->prepare($sqlDeleteCard);
