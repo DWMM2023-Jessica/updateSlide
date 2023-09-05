@@ -20,6 +20,14 @@ class DbConnect extends Database{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function readAllSlideWhereAnd($idtravaux)
+    {
+        $sql="SELECT * FROM `chantier` WHERE `id_travaux`=$idtravaux AND `position_chantier` IS NOT NULL ORDER BY `position_chantier` ASC;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function readAllSlideWhere($idtravaux)
     {
         $sql="SELECT * FROM `chantier` WHERE `id_travaux`=$idtravaux;";
@@ -62,4 +70,11 @@ class DbConnect extends Database{
         $stmt= $this->dbConnect->prepare($sql);
         $stmt->execute();
     }
+
+    public function insertUpdateParDefaut($positionParDefaut,$idtravaux){
+        $sql="INSERT INTO `chantier`(`nom_chantier`, `description_chantier`, `position_chantier`, `id_travaux`) VALUES ('Chantier','Description','$positionParDefaut','$idtravaux');";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+    }
+
 }   

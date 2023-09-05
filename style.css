@@ -20,7 +20,7 @@ ul{
 }
 
 .cardupdate{
-    width: 50%;
+    width: ;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,4 +42,24 @@ img{
 .updateForm{
     display: flex;
     justify-content: center;
+}
+
+.slideChantierUpdate{
+    display:flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.titleAffiche{
+    text-align: center;
+    margin:20px
+}
+
+.updateCardPost{
+    width: 26%;
+}
+
+.positionDiv{
+    display: flex;
 }

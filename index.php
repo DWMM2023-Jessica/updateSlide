@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'Class/DbConnect.php';
 $db = new DbConnect;
 ?>
@@ -10,9 +11,9 @@ $db = new DbConnect;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    
 </head>
 <body>
-    <section class="main">
         <nav>
             <ul>
                 <a href="index.php?page=realisation&command=modifier&categorie=RenovMur"><li>Rénovation des murs</li></a>
@@ -22,14 +23,52 @@ $db = new DbConnect;
             </ul>
         </nav>
         <a href="index.php?page=realisation&command=modifier&categorie=All"><p class='afficher'>Afficher tout</p></a>
-    
+    <section class='mainUpdateAdmin'>
     <?php 
-    
+
     if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='RenovMur'){
-        $resultAllChantier=$db->readAllSlideWhere(1);
+        ?><section class='chantierAfficheUpdate'>
+            <p class='titleAffiche'>Chantier Affiches</p>
+        <div class="slideChantierUpdate"><?php
+        $resultAllChantier=$db->readAllSlideWhereAnd(1);
+            if (($resultAllChantier[0]['position_chantier']!=1)){
+                $db->insertUpdateParDefaut(1,1);
+                header("Location: index.php?page=realisation&command=modifier&categorie=RenovMur");
+            }
+            var_dump($resultAllChantier);
+            if (($resultAllChantier[1]['position_chantier']!=2)){
+                $db->insertUpdateParDefaut(2,1);
+                header("Location: index.php?page=realisation&command=modifier&categorie=RenovMur");
+            }
+            if (($resultAllChantier[2]['position_chantier']!=3)){
+                $db->insertUpdateParDefaut(3,1);
+                header("Location: index.php?page=realisation&command=modifier&categorie=RenovMur");
+            }
+            if (($resultAllChantier[3]['position_chantier']!=4)){
+                $db->insertUpdateParDefaut(4,1);
+                header("Location: index.php?page=realisation&command=modifier&categorie=RenovMur");
+            }
+            if (($resultAllChantier[4]['position_chantier']!=5)){
+                $db->insertUpdateParDefaut(5,1);
+                header("Location: index.php?page=realisation&command=modifier&categorie=RenovMur");
+            }
+            if (($resultAllChantier[5]['position_chantier']!=6)){
+                $db->insertUpdateParDefaut(6,1);
+                header("Location: index.php?page=realisation&command=modifier&categorie=RenovMur");
+            }
         foreach ($resultAllChantier as $resultAllChantierKey) {
             echo
-                '<form method=\'POST\'><div class="cardupdate">
+                '<form method=\'POST\' class=\'updateCardPost\'><div class="cardupdate">
+                <div class="positionDiv">
+                    <select name="selectChantierUpdate">
+                    <option value="">Sélectionner un chantier</option>';
+
+                foreach($resultAllChantier as $resultAllChantierKey2){
+                    echo '<option value="'.$resultAllChantierKey2['id_chantier'].'">'.$resultAllChantierKey2['nom_chantier'].'</option>';
+                }
+            
+            echo '<input type="submit" name="submitPosition" value="Valider">
+                </div>
                 <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
                 <div class="imageCardUpdate">
                     <div class="imageAvant">
@@ -57,6 +96,7 @@ $db = new DbConnect;
                             unlink($oldImageAvDelete);
                             unlink($oldImageApDelete);
                         }
+                        header("Refresh:0");
                     }
                     if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
                         $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
@@ -65,13 +105,25 @@ $db = new DbConnect;
                 echo '</div>
             </div></form>';
         }
+        echo '</div></section>';
+
+        if (isset($_POST['submitPosition'])){
+            $idChantierToReplace=$_POST['selectChantierUpdate'];
+
+            
+        }
+
     }
 
     if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='PeintureInt'){
+        ?><section class='chantierAfficheUpdate'>
+            <p class='titleAffiche'>Chantier Affiches</p>
+        <div class="slideChantierUpdate"><?php
         $resultAllChantier=$db->readAllSlideWhere(2);
         foreach ($resultAllChantier as $resultAllChantierKey) {
             echo
-                '<form method=\'POST\'><div class="cardupdate">
+            
+                '<form method=\'POST\' class=\'updateCardPost\'><div class="cardupdate">
                 <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
                 <div class="imageCardUpdate">
                     <div class="imageAvant">
@@ -99,6 +151,7 @@ $db = new DbConnect;
                             unlink($oldImageAvDelete);
                             unlink($oldImageApDelete);
                         }
+
                     }
                     if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
                         $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
@@ -107,13 +160,17 @@ $db = new DbConnect;
                 echo '</div>
             </div></form>';
         }
+        echo '</div></section>';
     }
 
     if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='RevetMur'){
+        ?><section class='chantierAfficheUpdate'>
+            <p class='titleAffiche'>Chantier Affiches</p>
+        <div class="slideChantierUpdate"><?php
         $resultAllChantier=$db->readAllSlideWhere(3);
         foreach ($resultAllChantier as $resultAllChantierKey) {
             echo
-                '<form method=\'POST\'><div class="cardupdate">
+                '<form method=\'POST\' class=\'updateCardPost\'><div class="cardupdate">
                 <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
                 <div class="imageCardUpdate">
                     <div class="imageAvant">
@@ -149,13 +206,17 @@ $db = new DbConnect;
                 echo '</div>
             </div></form>';
         }
+        echo '</div></section>';
     }
 
     if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='RevetSol'){
+        ?><section class='chantierAfficheUpdate'>
+            <p class='titleAffiche'>Chantier Affiches</p>
+        <div class="slideChantierUpdate"><?php
         $resultAllChantier=$db->readAllSlideWhere(4);
         foreach ($resultAllChantier as $resultAllChantierKey) {
             echo
-                '<form method=\'POST\'><div class="cardupdate">
+                '<form method=\'POST\' class=\'updateCardPost\'><div class="cardupdate">
                 <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
                 <div class="imageCardUpdate">
                     <div class="imageAvant">
@@ -191,6 +252,7 @@ $db = new DbConnect;
                 echo '</div>
             </div></form>';
         }
+        echo '</div></section>';
     }
     
     if (isset($_GET['page'], $_GET['command'], $_GET['categorie']) && $_GET['page']='realisation' && $_GET['command']='modifier' && $_GET['categorie']=='All'){ 
@@ -198,7 +260,7 @@ $db = new DbConnect;
         $resultAllChantier=$db->readAllSlide();
         foreach ($resultAllChantier as $resultAllChantierKey) {
             echo
-                '<form method=\'POST\'><div class="cardupdate">
+                '<form method=\'POST\' class=\'updateCardPost\'><div class="cardupdate">
                 <p>' .$resultAllChantierKey['nom_chantier'] .'</p>
                 <div class="imageCardUpdate">
                     <div class="imageAvant">
@@ -227,12 +289,13 @@ $db = new DbConnect;
                             unlink($oldImageApDelete);
                         }
                     }
-                    if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
-                        $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
-                        header("Location: index.php?page=realisation&command=modifier&card=$idCardSelect");
-                    }
+                    
                 echo '</div>
             </div></form>';
+        }
+        if (isset($_POST['Modifier' .$resultAllChantierKey['id_chantier']. ''])) {
+            $idCardSelect=$_POST['postSupprimer' .$resultAllChantierKey['id_chantier']. ''];
+            header("Location: index.php?page=realisation&command=modifier&card=$idCardSelect");
         }
     }
 
@@ -352,19 +415,15 @@ $db = new DbConnect;
                 echo 'Type non autorisé.';
             }
             }
-        
             $newTitle=$_POST['updateNomInput'];
             $newDescription=$_POST['updateDescriptionInput'];
-            $db->update2($newTitle, $newDescription, $idCardUpdate);
-            
-            
+            $db->update2($newTitle, $newDescription, $idCardUpdate);   
         }
-
   }
 
 
 
-
+ob_end_flush();
     ?>
     </section>
 </body>
