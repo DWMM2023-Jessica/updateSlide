@@ -74,13 +74,16 @@ class DbConnect extends Database{
 
     public function update2($newTitle, $newDescription, $idCardUpdate){
         $sql="UPDATE `chantier`
-        SET `nom_chantier`='$newTitle', `description_chantier`='$newDescription' WHERE `id_chantier`=$idCardUpdate;";
+        SET `nom_chantier` = :newTitle, `description_chantier` = :newDescription WHERE `id_chantier` = :idCardUpdate;";
         $stmt= $this->dbConnect->prepare($sql);
+        $stmt->bindParam(":newTitle", $newTitle, PDO::PARAM_STR);
+        $stmt->bindParam(":newDescription", $newDescription, PDO::PARAM_STR);
+        $stmt->bindParam(":idCardUpdate", $idCardUpdate, PDO::PARAM_STR);
         $stmt->execute();
     }
 
     public function insertUpdateParDefaut($positionParDefaut,$idtravaux){
-        $sql="INSERT INTO `chantier`(`nom_chantier`, `description_chantier`, `position_chantier`, `id_travaux`) VALUES ('Chantier$positionParDefaut','Description','$positionParDefaut','$idtravaux');";
+        $sql="INSERT INTO `chantier`(`nom_chantier`, `description_chantier`, `position_chantier`, `id_travaux`) VALUES ('Chantier$positionParDefaut','Description par défaut','$positionParDefaut','$idtravaux');";
         $stmt= $this->dbConnect->prepare($sql);
         $stmt->execute();
     }
@@ -106,6 +109,20 @@ class DbConnect extends Database{
         SET `position_chantier`='$positionChantier' WHERE `id_chantier`=$idChantier;";
         $stmt= $this->dbConnect->prepare($sql);
         $stmt->execute();
+    }
+
+    public function deleteParDefaut($idtravaux){
+        $sql="DELETE FROM `chantier` WHERE `description_chantier`='Description par défaut' AND `position_chantier`=0 AND `id_travaux`=$idtravaux;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+        
+    }
+
+    public function countParDefaut($idtravaux){
+        $sql="SELECT COUNT(*) FROM  `chantier` WHERE `description_chantier`='Description par défaut' AND `position_chantier`=0 AND `id_travaux`=$idtravaux;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
     }
 
     

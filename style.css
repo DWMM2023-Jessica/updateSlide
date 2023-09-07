@@ -7,23 +7,62 @@ body{
     min-height: 100vh;
 }
 
-ul{
+.navUpdate{
+    display: flex;
+    justify-content: center;
+}
+.ulUpdate{
     display: flex;
     justify-content: space-between;
-    
+    width: 80%;
+}
+
+.ulUpdate li{
+    list-style-type: none;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 20px;
+    color: black;
+    padding-inline: 8px;
+    padding-block: 4px;
+    border-radius: 10px;
+}
+
+.ulUpdate li:hover{
+    background-color: #346077;
+    color: white;
+
+}
+
+.ulUpdate a{
+    text-decoration: none;
+}
+
+.chantierAfficheUpdate, .chantierAfficheUpdate2{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .afficher{
     display: flex;
     justify-content: center;
     margin: 5%;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 18px;
+    color: black;
 }
 
 .cardupdate{
-    width: ;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 12px;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 18px;
+    color: aliceblue;
+    
 }
 
 .imageCardUpdate{
@@ -38,11 +77,24 @@ ul{
     text-align: center;
 }
 
-img{
+.imageAvant img, .imageApres img{
     width: 100%;
-    height: 150px;
+    height: 125px;
     object-fit:cover;
     border-radius: 16px;
+}
+
+.imageAvantUp, .imageApresUp{
+    width: 45%;
+    text-align: center;
+}
+
+.imageAvantUp img, .imageApresUp img{
+    width: 100%;
+    height: 250px;
+    object-fit:cover;
+    border-radius: 16px;
+
 }
 
 .inputHidden{
@@ -53,6 +105,10 @@ img{
 .updateForm{
     display: flex;
     justify-content: center;
+    background-color: #346077;
+    width: 60%;
+    border-radius: 16px;
+    min-width: 300px;
 }
 
 .slideChantierUpdate{
@@ -61,6 +117,7 @@ img{
     flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 10%;
+    max-width: 1350px;
 }
 
 .titleAffiche{
@@ -72,13 +129,14 @@ img{
 }
 
 .updateCardPost{
-    width: 26%;
+    width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     background-color: #346077;
     margin-bottom:3%;
+    margin-inline: 3px;
     border-radius: 12px;
     font-family: 'Average Sans', sans-serif;
     font-size: 18px;
@@ -88,6 +146,7 @@ img{
 .positionDiv{
     display: flex;
     margin: 3px;
+    width: 60%;
 }
 
 .imageDivUpdate{
@@ -97,4 +156,82 @@ img{
 
 .updOrDelete{
     margin-bottom: 3px;
+}
+
+.mainUpdateAdmin{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divUpdateCardModifer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    max-width: 1400px;
+}
+
+.selectChantier{
+    width: 100%;
+    text-align: center;
+}
+
+.inputModifier{
+    border-radius: 4px;
+    padding-inline: 2px;
+    text-align: center;
+    max-width: 50%;
+    margin: 2px;
+}
+
+.areaModifier{
+    width: 80%;
+    height: 100px;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 18px;
+    padding-inline:2px;
+    border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    .imageCardUpdate{
+        flex-direction: column;
+        align-items: center;
+    }
+    .imageDivUpdate{
+        width: 100%;
+    }
+    .imageAvant,.imageApres{
+        width: 60%;
+        max-width: 150px;
+    }
+    .imageAvantUp,.imageApresUp{
+        min-width: 125px;
+    }
+
+    .updateCardPost{
+        width: 80%;
+        min-width: 200px;
+
+    }
+
+    .ulUpdate{
+        flex-direction: column;
+        align-items: center;
+    }
+    .ulUpdate li{
+        white-space:nowrap;
+    }
+
+    .updateForm{
+        min-width:200px;
+
+    }
+
+    .imageAvantUp img, .imageApresUp img{
+        height: 125px;
+    }
+
+
 }
