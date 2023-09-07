@@ -22,7 +22,15 @@ class DbConnect extends Database{
 
     public function readAllSlideWhereAnd($idtravaux)
     {
-        $sql="SELECT * FROM `chantier` WHERE `id_travaux`=$idtravaux AND `position_chantier` IS NOT NULL ORDER BY `position_chantier` ASC;";
+        $sql="SELECT * FROM `chantier` WHERE `id_travaux`=$idtravaux AND `position_chantier`!=0 ORDER BY `position_chantier` ASC;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function readAllSlideWhereAnd2($idtravaux)
+    {
+        $sql="SELECT * FROM `chantier` WHERE `id_travaux`=$idtravaux AND `position_chantier`=0 ORDER BY `position_chantier` ASC;";
         $stmt= $this->dbConnect->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -72,9 +80,33 @@ class DbConnect extends Database{
     }
 
     public function insertUpdateParDefaut($positionParDefaut,$idtravaux){
-        $sql="INSERT INTO `chantier`(`nom_chantier`, `description_chantier`, `position_chantier`, `id_travaux`) VALUES ('Chantier','Description','$positionParDefaut','$idtravaux');";
+        $sql="INSERT INTO `chantier`(`nom_chantier`, `description_chantier`, `position_chantier`, `id_travaux`) VALUES ('Chantier$positionParDefaut','Description','$positionParDefaut','$idtravaux');";
         $stmt= $this->dbConnect->prepare($sql);
         $stmt->execute();
     }
 
+    public function readAllSlideWherePosition($idtravaux, $position)
+    {
+        $sql="SELECT * FROM `chantier` WHERE `id_travaux`=$idtravaux AND `position_chantier`=$position;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function selectPosition($idChantierToReplace)
+    {
+        $sql="SELECT `position_chantier` FROM `chantier` WHERE `id_chantier`=$idChantierToReplace;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updatePosition($positionChantier, $idChantier){
+        $sql="UPDATE `chantier`
+        SET `position_chantier`='$positionChantier' WHERE `id_chantier`=$idChantier;";
+        $stmt= $this->dbConnect->prepare($sql);
+        $stmt->execute();
+    }
+
+    
 }   

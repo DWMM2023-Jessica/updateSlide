@@ -28,10 +28,21 @@ ul{
 
 .imageCardUpdate{
     display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-block: 5%;
+}
+
+.imageAvant, .imageApres{
+    width: 35%;
+    text-align: center;
 }
 
 img{
     width: 100%;
+    height: 150px;
+    object-fit:cover;
+    border-radius: 16px;
 }
 
 .inputHidden{
@@ -49,17 +60,41 @@ img{
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-bottom: 10%;
 }
 
 .titleAffiche{
     text-align: center;
-    margin:20px
+    margin:20px;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 24px;
+    
 }
 
 .updateCardPost{
     width: 26%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #346077;
+    margin-bottom:3%;
+    border-radius: 12px;
+    font-family: 'Average Sans', sans-serif;
+    font-size: 18px;
+    color: aliceblue;
 }
 
 .positionDiv{
     display: flex;
+    margin: 3px;
+}
+
+.imageDivUpdate{
+    width: 100%;
+    border-radius: 16px;
+}
+
+.updOrDelete{
+    margin-bottom: 3px;
 }
