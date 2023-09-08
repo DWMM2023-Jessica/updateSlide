@@ -33,6 +33,10 @@ body{
 
 }
 
+.afficheAllLink{
+    text-decoration: none;
+}
+
 .ulUpdate a{
     text-decoration: none;
 }
@@ -44,13 +48,23 @@ body{
     align-items: center;
 }
 
+.afficher:hover{
+    background-color: #346077;
+    color: white;
+}
+
 .afficher{
     display: flex;
     justify-content: center;
-    margin: 5%;
+    margin-block: 5%;
+    margin-inline: auto;
     font-family: 'Average Sans', sans-serif;
     font-size: 18px;
     color: black;
+    width: 8%;
+    border-radius: 8px;
+    min-width: 100px;
+    max-width: 150px;
 }
 
 .cardupdate{
